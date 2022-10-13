@@ -1,0 +1,830 @@
+nohup: ignoring input
+main.py:65: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  if args.config is not '':
+command line args [--dataset yelp] will not be used in RecBole
+20 Jun 01:50    INFO  
+General Hyper Parameters:
+gpu_id = 3
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/yelp
+checkpoint_dir = saved
+show_progress = False
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+neg_sampling = {'uniform': 1}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'NDCG']
+topk = [10, 20, 50]
+valid_metric = Recall@20
+valid_metric_bigger = True
+eval_batch_size = 4096000
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = business_id
+RATING_FIELD = stars
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'business_id', 'stars']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = {'stars': '[3,inf)'}
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [15,inf)
+item_inter_num_interval = [15,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+wandb_project = recbole
+require_pow = False
+MODEL_TYPE = ModelType.GENERAL
+eval_setting = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': 'full'}
+embedding_size = 64
+n_layers = 3
+reg_weight = 0.0001
+hyper_layer = 2
+alpha = 0.2
+gamma = 1
+TopK = 10
+user_threshold = 0.8
+item_threshold = 0.8
+ssl_reg = 1e-06
+ssl_temp = 0.1
+info_reg = 1e-06
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+device = cuda
+train_neg_sample_args = {'strategy': 'by', 'by': 1, 'distribution': 'uniform', 'dynamic': 'none'}
+eval_neg_sample_args = {'strategy': 'full', 'distribution': 'uniform'}
+
+
+20 Jun 01:52    INFO  Saving filtered dataset into [saved/yelp-dataset.pth]
+20 Jun 01:52    INFO  yelp
+The number of users: 45478
+Average actions of users: 39.09151878971788
+The number of items: 30709
+Average actions of items: 57.89256871173635
+The number of inters: 1777765
+The sparsity of the dataset: 99.87270617988263%
+Remain Fields: ['user_id', 'business_id', 'stars']
+20 Jun 01:52    INFO  [Training]: train_batch_size = [2048] negative sampling: [{'uniform': 1}]
+20 Jun 01:52    INFO  [Evaluation]: eval_batch_size = [4096000] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+/workspace/anaconda/NCL/NCL-master/ncl.py:237: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  /opt/conda/conda-bld/pytorch_1646755853042/work/torch/csrc/utils/tensor_new.cpp:210.)
+  i = torch.LongTensor([row, col])
+already load topK matrix (76187, 76187) 0.054079532623291016
+20 Jun 01:52    INFO  NCL(
+  (user_embedding): Embedding(45478, 64)
+  (item_embedding): Embedding(30709, 64)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 4875968
+20 Jun 01:55    INFO  epoch 0 training [time: 159.93s, train_loss1: 495.6983, train_loss2: 0.8798, train_loss3: 1.4448]
+20 Jun 01:55    INFO  epoch 0 evaluating [time: 1.91s, valid_score: 0.021000]
+20 Jun 01:55    INFO  valid result: 
+recall@10 : 0.0139    recall@20 : 0.021    recall@50 : 0.0341    ndcg@10 : 0.0109    ndcg@20 : 0.0131    ndcg@50 : 0.0165
+20 Jun 01:55    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 01:55    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 01:57    INFO  epoch 1 training [time: 161.74s, train_loss1: 413.5873, train_loss2: 3.8549, train_loss3: 5.0545]
+20 Jun 01:57    INFO  epoch 1 evaluating [time: 2.09s, valid_score: 0.048800]
+20 Jun 01:57    INFO  valid result: 
+recall@10 : 0.0308    recall@20 : 0.0488    recall@50 : 0.0919    ndcg@10 : 0.0222    ndcg@20 : 0.0277    ndcg@50 : 0.0389
+20 Jun 01:57    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 01:57    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:00    INFO  epoch 2 training [time: 162.27s, train_loss1: 114.0337, train_loss2: 13.9356, train_loss3: 16.8947]
+20 Jun 02:00    INFO  epoch 2 evaluating [time: 1.93s, valid_score: 0.060800]
+20 Jun 02:00    INFO  valid result: 
+recall@10 : 0.0363    recall@20 : 0.0608    recall@50 : 0.1154    ndcg@10 : 0.0254    ndcg@20 : 0.033    ndcg@50 : 0.0471
+20 Jun 02:00    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:00    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:03    INFO  epoch 3 training [time: 163.11s, train_loss1: 86.8421, train_loss2: 12.7789, train_loss3: 15.5987]
+20 Jun 02:03    INFO  epoch 3 evaluating [time: 2.07s, valid_score: 0.067100]
+20 Jun 02:03    INFO  valid result: 
+recall@10 : 0.0401    recall@20 : 0.0671    recall@50 : 0.1264    ndcg@10 : 0.028    ndcg@20 : 0.0364    ndcg@50 : 0.0518
+20 Jun 02:03    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:03    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:05    INFO  epoch 4 training [time: 162.34s, train_loss1: 77.1419, train_loss2: 11.8490, train_loss3: 14.5670]
+20 Jun 02:06    INFO  epoch 4 evaluating [time: 2.31s, valid_score: 0.072700]
+20 Jun 02:06    INFO  valid result: 
+recall@10 : 0.0443    recall@20 : 0.0727    recall@50 : 0.138    ndcg@10 : 0.0308    ndcg@20 : 0.0396    ndcg@50 : 0.0565
+20 Jun 02:06    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:06    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:08    INFO  epoch 5 training [time: 163.28s, train_loss1: 69.7132, train_loss2: 11.0922, train_loss3: 13.7344]
+20 Jun 02:08    INFO  epoch 5 evaluating [time: 1.98s, valid_score: 0.077900]
+20 Jun 02:08    INFO  valid result: 
+recall@10 : 0.0473    recall@20 : 0.0779    recall@50 : 0.1475    ndcg@10 : 0.0331    ndcg@20 : 0.0426    ndcg@50 : 0.0606
+20 Jun 02:08    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:08    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:11    INFO  epoch 6 training [time: 162.52s, train_loss1: 64.6670, train_loss2: 10.4609, train_loss3: 13.0435]
+20 Jun 02:11    INFO  epoch 6 evaluating [time: 1.90s, valid_score: 0.082000]
+20 Jun 02:11    INFO  valid result: 
+recall@10 : 0.0502    recall@20 : 0.082    recall@50 : 0.1557    ndcg@10 : 0.0351    ndcg@20 : 0.045    ndcg@50 : 0.064
+20 Jun 02:11    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:11    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:14    INFO  epoch 7 training [time: 163.14s, train_loss1: 60.5653, train_loss2: 9.9461, train_loss3: 12.4835]
+20 Jun 02:14    INFO  epoch 7 evaluating [time: 1.98s, valid_score: 0.086300]
+20 Jun 02:14    INFO  valid result: 
+recall@10 : 0.0529    recall@20 : 0.0863    recall@50 : 0.162    ndcg@10 : 0.0368    ndcg@20 : 0.0472    ndcg@50 : 0.0668
+20 Jun 02:14    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:14    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:17    INFO  epoch 8 training [time: 163.23s, train_loss1: 57.7690, train_loss2: 9.5226, train_loss3: 12.0228]
+20 Jun 02:17    INFO  epoch 8 evaluating [time: 1.98s, valid_score: 0.089900]
+20 Jun 02:17    INFO  valid result: 
+recall@10 : 0.0551    recall@20 : 0.0899    recall@50 : 0.1683    ndcg@10 : 0.0385    ndcg@20 : 0.0493    ndcg@50 : 0.0697
+20 Jun 02:17    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:17    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:19    INFO  epoch 9 training [time: 162.97s, train_loss1: 54.7125, train_loss2: 9.1531, train_loss3: 11.6169]
+20 Jun 02:19    INFO  epoch 9 evaluating [time: 2.07s, valid_score: 0.093500]
+20 Jun 02:19    INFO  valid result: 
+recall@10 : 0.0572    recall@20 : 0.0935    recall@50 : 0.1733    ndcg@10 : 0.04    ndcg@20 : 0.0513    ndcg@50 : 0.072
+20 Jun 02:19    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:19    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:22    INFO  epoch 10 training [time: 163.42s, train_loss1: 52.4849, train_loss2: 8.8222, train_loss3: 11.2517]
+20 Jun 02:22    INFO  epoch 10 evaluating [time: 2.07s, valid_score: 0.097100]
+20 Jun 02:22    INFO  valid result: 
+recall@10 : 0.0594    recall@20 : 0.0971    recall@50 : 0.1788    ndcg@10 : 0.0417    ndcg@20 : 0.0533    ndcg@50 : 0.0745
+20 Jun 02:22    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:22    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:25    INFO  epoch 11 training [time: 164.05s, train_loss1: 50.8182, train_loss2: 8.5436, train_loss3: 10.9435]
+20 Jun 02:25    INFO  epoch 11 evaluating [time: 1.98s, valid_score: 0.099000]
+20 Jun 02:25    INFO  valid result: 
+recall@10 : 0.0609    recall@20 : 0.099    recall@50 : 0.1819    ndcg@10 : 0.0428    ndcg@20 : 0.0547    ndcg@50 : 0.0762
+20 Jun 02:25    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:25    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:28    INFO  epoch 12 training [time: 163.64s, train_loss1: 48.9531, train_loss2: 8.2947, train_loss3: 10.6663]
+20 Jun 02:28    INFO  epoch 12 evaluating [time: 2.03s, valid_score: 0.101500]
+20 Jun 02:28    INFO  valid result: 
+recall@10 : 0.0629    recall@20 : 0.1015    recall@50 : 0.1848    ndcg@10 : 0.0442    ndcg@20 : 0.0562    ndcg@50 : 0.0779
+20 Jun 02:28    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:28    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:30    INFO  epoch 13 training [time: 161.97s, train_loss1: 47.3787, train_loss2: 8.0611, train_loss3: 10.4030]
+20 Jun 02:30    INFO  epoch 13 evaluating [time: 2.07s, valid_score: 0.103000]
+20 Jun 02:30    INFO  valid result: 
+recall@10 : 0.0643    recall@20 : 0.103    recall@50 : 0.1876    ndcg@10 : 0.0452    ndcg@20 : 0.0572    ndcg@50 : 0.0792
+20 Jun 02:30    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:30    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:33    INFO  epoch 14 training [time: 161.79s, train_loss1: 46.3905, train_loss2: 7.8416, train_loss3: 10.1526]
+20 Jun 02:33    INFO  epoch 14 evaluating [time: 2.11s, valid_score: 0.105300]
+20 Jun 02:33    INFO  valid result: 
+recall@10 : 0.0659    recall@20 : 0.1053    recall@50 : 0.1911    ndcg@10 : 0.0463    ndcg@20 : 0.0586    ndcg@50 : 0.0809
+20 Jun 02:33    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:33    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:36    INFO  epoch 15 training [time: 163.48s, train_loss1: 45.0140, train_loss2: 7.6426, train_loss3: 9.9263]
+20 Jun 02:36    INFO  epoch 15 evaluating [time: 2.21s, valid_score: 0.107700]
+20 Jun 02:36    INFO  valid result: 
+recall@10 : 0.0671    recall@20 : 0.1077    recall@50 : 0.1935    ndcg@10 : 0.0473    ndcg@20 : 0.0599    ndcg@50 : 0.0821
+20 Jun 02:36    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:36    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:39    INFO  epoch 16 training [time: 163.01s, train_loss1: 43.8390, train_loss2: 7.4525, train_loss3: 9.7071]
+20 Jun 02:39    INFO  epoch 16 evaluating [time: 1.85s, valid_score: 0.109100]
+20 Jun 02:39    INFO  valid result: 
+recall@10 : 0.0683    recall@20 : 0.1091    recall@50 : 0.1956    ndcg@10 : 0.0482    ndcg@20 : 0.0609    ndcg@50 : 0.0833
+20 Jun 02:39    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:39    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:41    INFO  epoch 17 training [time: 162.95s, train_loss1: 42.5630, train_loss2: 7.2826, train_loss3: 9.5108]
+20 Jun 02:41    INFO  epoch 17 evaluating [time: 2.05s, valid_score: 0.110700]
+20 Jun 02:41    INFO  valid result: 
+recall@10 : 0.0694    recall@20 : 0.1107    recall@50 : 0.1977    ndcg@10 : 0.0491    ndcg@20 : 0.0619    ndcg@50 : 0.0844
+20 Jun 02:41    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:41    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:44    INFO  epoch 18 training [time: 163.97s, train_loss1: 41.6238, train_loss2: 7.1028, train_loss3: 9.3024]
+20 Jun 02:44    INFO  epoch 18 evaluating [time: 1.83s, valid_score: 0.112100]
+20 Jun 02:44    INFO  valid result: 
+recall@10 : 0.0701    recall@20 : 0.1121    recall@50 : 0.1992    ndcg@10 : 0.0497    ndcg@20 : 0.0628    ndcg@50 : 0.0853
+20 Jun 02:44    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:44    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:47    INFO  epoch 19 training [time: 163.39s, train_loss1: 40.8834, train_loss2: 6.9530, train_loss3: 9.1276]
+20 Jun 02:47    INFO  epoch 19 evaluating [time: 1.85s, valid_score: 0.113200]
+20 Jun 02:47    INFO  valid result: 
+recall@10 : 0.0712    recall@20 : 0.1132    recall@50 : 0.2006    ndcg@10 : 0.0505    ndcg@20 : 0.0635    ndcg@50 : 0.0862
+20 Jun 02:47    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:47    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:50    INFO  epoch 20 training [time: 162.86s, train_loss1: 40.1169, train_loss2: 6.8001, train_loss3: 8.9482]
+20 Jun 02:50    INFO  epoch 20 evaluating [time: 1.76s, valid_score: 0.114400]
+20 Jun 02:50    INFO  valid result: 
+recall@10 : 0.0719    recall@20 : 0.1144    recall@50 : 0.2023    ndcg@10 : 0.0513    ndcg@20 : 0.0644    ndcg@50 : 0.0872
+20 Jun 02:50    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:50    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:52    INFO  epoch 21 training [time: 161.47s, train_loss1: 39.2236, train_loss2: 6.6624, train_loss3: 8.7861]
+20 Jun 02:52    INFO  epoch 21 evaluating [time: 1.98s, valid_score: 0.115900]
+20 Jun 02:52    INFO  valid result: 
+recall@10 : 0.0727    recall@20 : 0.1159    recall@50 : 0.2033    ndcg@10 : 0.052    ndcg@20 : 0.0653    ndcg@50 : 0.088
+20 Jun 02:52    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:52    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:55    INFO  epoch 22 training [time: 161.84s, train_loss1: 38.4634, train_loss2: 6.5315, train_loss3: 8.6309]
+20 Jun 02:55    INFO  epoch 22 evaluating [time: 1.84s, valid_score: 0.116700]
+20 Jun 02:55    INFO  valid result: 
+recall@10 : 0.074    recall@20 : 0.1167    recall@50 : 0.2049    ndcg@10 : 0.0529    ndcg@20 : 0.0661    ndcg@50 : 0.089
+20 Jun 02:55    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:55    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:58    INFO  epoch 23 training [time: 163.12s, train_loss1: 37.5036, train_loss2: 6.4014, train_loss3: 8.4754]
+20 Jun 02:58    INFO  epoch 23 evaluating [time: 1.93s, valid_score: 0.118400]
+20 Jun 02:58    INFO  valid result: 
+recall@10 : 0.0747    recall@20 : 0.1184    recall@50 : 0.2063    ndcg@10 : 0.0535    ndcg@20 : 0.0669    ndcg@50 : 0.0898
+20 Jun 02:58    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 02:58    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:01    INFO  epoch 24 training [time: 164.08s, train_loss1: 36.6003, train_loss2: 6.2726, train_loss3: 8.3212]
+20 Jun 03:01    INFO  epoch 24 evaluating [time: 1.86s, valid_score: 0.119100]
+20 Jun 03:01    INFO  valid result: 
+recall@10 : 0.0752    recall@20 : 0.1191    recall@50 : 0.2076    ndcg@10 : 0.054    ndcg@20 : 0.0675    ndcg@50 : 0.0905
+20 Jun 03:01    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:01    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:03    INFO  epoch 25 training [time: 164.19s, train_loss1: 36.3658, train_loss2: 6.1475, train_loss3: 8.1705]
+20 Jun 03:03    INFO  epoch 25 evaluating [time: 1.89s, valid_score: 0.119900]
+20 Jun 03:03    INFO  valid result: 
+recall@10 : 0.0758    recall@20 : 0.1199    recall@50 : 0.2086    ndcg@10 : 0.0545    ndcg@20 : 0.0681    ndcg@50 : 0.0911
+20 Jun 03:03    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:03    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:06    INFO  epoch 26 training [time: 163.85s, train_loss1: 35.9377, train_loss2: 6.0244, train_loss3: 8.0221]
+20 Jun 03:06    INFO  epoch 26 evaluating [time: 1.79s, valid_score: 0.120300]
+20 Jun 03:06    INFO  valid result: 
+recall@10 : 0.0761    recall@20 : 0.1203    recall@50 : 0.2093    ndcg@10 : 0.0548    ndcg@20 : 0.0684    ndcg@50 : 0.0916
+20 Jun 03:06    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:06    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:09    INFO  epoch 27 training [time: 162.18s, train_loss1: 34.8860, train_loss2: 5.9316, train_loss3: 7.9088]
+20 Jun 03:09    INFO  epoch 27 evaluating [time: 1.93s, valid_score: 0.121300]
+20 Jun 03:09    INFO  valid result: 
+recall@10 : 0.0771    recall@20 : 0.1213    recall@50 : 0.2107    ndcg@10 : 0.0556    ndcg@20 : 0.0692    ndcg@50 : 0.0924
+20 Jun 03:09    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:09    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:12    INFO  epoch 28 training [time: 162.98s, train_loss1: 34.6308, train_loss2: 5.8129, train_loss3: 7.7640]
+20 Jun 03:12    INFO  epoch 28 evaluating [time: 1.88s, valid_score: 0.122100]
+20 Jun 03:12    INFO  valid result: 
+recall@10 : 0.0776    recall@20 : 0.1221    recall@50 : 0.2114    ndcg@10 : 0.0559    ndcg@20 : 0.0696    ndcg@50 : 0.0928
+20 Jun 03:12    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:12    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:14    INFO  epoch 29 training [time: 162.33s, train_loss1: 34.0299, train_loss2: 5.7074, train_loss3: 7.6353]
+20 Jun 03:14    INFO  epoch 29 evaluating [time: 1.92s, valid_score: 0.122800]
+20 Jun 03:14    INFO  valid result: 
+recall@10 : 0.0781    recall@20 : 0.1228    recall@50 : 0.2126    ndcg@10 : 0.0565    ndcg@20 : 0.0702    ndcg@50 : 0.0935
+20 Jun 03:14    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:14    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:17    INFO  epoch 30 training [time: 161.52s, train_loss1: 33.6029, train_loss2: 5.6200, train_loss3: 7.5289]
+20 Jun 03:17    INFO  epoch 30 evaluating [time: 2.16s, valid_score: 0.123200]
+20 Jun 03:17    INFO  valid result: 
+recall@10 : 0.0786    recall@20 : 0.1232    recall@50 : 0.2134    ndcg@10 : 0.057    ndcg@20 : 0.0707    ndcg@50 : 0.0941
+20 Jun 03:17    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:17    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:20    INFO  epoch 31 training [time: 161.74s, train_loss1: 33.1767, train_loss2: 5.5256, train_loss3: 7.4134]
+20 Jun 03:20    INFO  epoch 31 evaluating [time: 1.85s, valid_score: 0.124000]
+20 Jun 03:20    INFO  valid result: 
+recall@10 : 0.0789    recall@20 : 0.124    recall@50 : 0.2151    ndcg@10 : 0.0573    ndcg@20 : 0.0712    ndcg@50 : 0.0948
+20 Jun 03:20    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:20    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:23    INFO  epoch 32 training [time: 161.17s, train_loss1: 32.4688, train_loss2: 5.4365, train_loss3: 7.3029]
+20 Jun 03:23    INFO  epoch 32 evaluating [time: 1.96s, valid_score: 0.124400]
+20 Jun 03:23    INFO  valid result: 
+recall@10 : 0.0791    recall@20 : 0.1244    recall@50 : 0.2153    ndcg@10 : 0.0576    ndcg@20 : 0.0715    ndcg@50 : 0.0951
+20 Jun 03:23    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:23    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:25    INFO  epoch 33 training [time: 161.30s, train_loss1: 31.8697, train_loss2: 5.3483, train_loss3: 7.1928]
+20 Jun 03:25    INFO  epoch 33 evaluating [time: 1.78s, valid_score: 0.124800]
+20 Jun 03:25    INFO  valid result: 
+recall@10 : 0.0794    recall@20 : 0.1248    recall@50 : 0.2155    ndcg@10 : 0.058    ndcg@20 : 0.0719    ndcg@50 : 0.0955
+20 Jun 03:25    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:25    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:28    INFO  epoch 34 training [time: 162.18s, train_loss1: 31.4720, train_loss2: 5.2701, train_loss3: 7.0945]
+20 Jun 03:28    INFO  epoch 34 evaluating [time: 1.77s, valid_score: 0.125400]
+20 Jun 03:28    INFO  valid result: 
+recall@10 : 0.08    recall@20 : 0.1254    recall@50 : 0.2167    ndcg@10 : 0.0586    ndcg@20 : 0.0725    ndcg@50 : 0.0962
+20 Jun 03:28    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:28    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:31    INFO  epoch 35 training [time: 161.10s, train_loss1: 30.9857, train_loss2: 5.1791, train_loss3: 6.9821]
+20 Jun 03:31    INFO  epoch 35 evaluating [time: 1.92s, valid_score: 0.126200]
+20 Jun 03:31    INFO  valid result: 
+recall@10 : 0.0804    recall@20 : 0.1262    recall@50 : 0.2167    ndcg@10 : 0.059    ndcg@20 : 0.073    ndcg@50 : 0.0965
+20 Jun 03:31    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:31    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:34    INFO  epoch 36 training [time: 161.15s, train_loss1: 30.8257, train_loss2: 5.1011, train_loss3: 6.8847]
+20 Jun 03:34    INFO  epoch 36 evaluating [time: 1.90s, valid_score: 0.126200]
+20 Jun 03:34    INFO  valid result: 
+recall@10 : 0.0807    recall@20 : 0.1262    recall@50 : 0.2175    ndcg@10 : 0.0592    ndcg@20 : 0.0732    ndcg@50 : 0.0968
+20 Jun 03:34    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:34    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:36    INFO  epoch 37 training [time: 162.11s, train_loss1: 30.4762, train_loss2: 5.0330, train_loss3: 6.7991]
+20 Jun 03:36    INFO  epoch 37 evaluating [time: 1.96s, valid_score: 0.127100]
+20 Jun 03:36    INFO  valid result: 
+recall@10 : 0.081    recall@20 : 0.1271    recall@50 : 0.218    ndcg@10 : 0.0596    ndcg@20 : 0.0736    ndcg@50 : 0.0972
+20 Jun 03:36    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:36    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:39    INFO  epoch 38 training [time: 161.68s, train_loss1: 30.0733, train_loss2: 4.9571, train_loss3: 6.7028]
+20 Jun 03:39    INFO  epoch 38 evaluating [time: 1.92s, valid_score: 0.127500]
+20 Jun 03:39    INFO  valid result: 
+recall@10 : 0.0812    recall@20 : 0.1275    recall@50 : 0.2187    ndcg@10 : 0.0598    ndcg@20 : 0.0739    ndcg@50 : 0.0976
+20 Jun 03:39    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:39    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:42    INFO  epoch 39 training [time: 162.18s, train_loss1: 29.5229, train_loss2: 4.8949, train_loss3: 6.6228]
+20 Jun 03:42    INFO  epoch 39 evaluating [time: 1.97s, valid_score: 0.127500]
+20 Jun 03:42    INFO  valid result: 
+recall@10 : 0.082    recall@20 : 0.1275    recall@50 : 0.2191    ndcg@10 : 0.0604    ndcg@20 : 0.0743    ndcg@50 : 0.0981
+20 Jun 03:42    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:42    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:45    INFO  epoch 40 training [time: 162.32s, train_loss1: 29.2724, train_loss2: 4.8203, train_loss3: 6.5281]
+20 Jun 03:45    INFO  epoch 40 evaluating [time: 1.82s, valid_score: 0.127800]
+20 Jun 03:45    INFO  valid result: 
+recall@10 : 0.0821    recall@20 : 0.1278    recall@50 : 0.2195    ndcg@10 : 0.0606    ndcg@20 : 0.0745    ndcg@50 : 0.0983
+20 Jun 03:45    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:45    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:47    INFO  epoch 41 training [time: 161.71s, train_loss1: 28.8830, train_loss2: 4.7453, train_loss3: 6.4321]
+20 Jun 03:47    INFO  epoch 41 evaluating [time: 1.91s, valid_score: 0.128300]
+20 Jun 03:47    INFO  valid result: 
+recall@10 : 0.0827    recall@20 : 0.1283    recall@50 : 0.2202    ndcg@10 : 0.061    ndcg@20 : 0.0749    ndcg@50 : 0.0987
+20 Jun 03:47    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:47    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:50    INFO  epoch 42 training [time: 161.85s, train_loss1: 28.6127, train_loss2: 4.6838, train_loss3: 6.3536]
+20 Jun 03:50    INFO  epoch 42 evaluating [time: 1.91s, valid_score: 0.128700]
+20 Jun 03:50    INFO  valid result: 
+recall@10 : 0.0829    recall@20 : 0.1287    recall@50 : 0.2208    ndcg@10 : 0.0612    ndcg@20 : 0.0751    ndcg@50 : 0.099
+20 Jun 03:50    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:50    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:53    INFO  epoch 43 training [time: 163.84s, train_loss1: 28.2299, train_loss2: 4.6192, train_loss3: 6.2713]
+20 Jun 03:53    INFO  epoch 43 evaluating [time: 1.79s, valid_score: 0.129000]
+20 Jun 03:53    INFO  valid result: 
+recall@10 : 0.0831    recall@20 : 0.129    recall@50 : 0.221    ndcg@10 : 0.0614    ndcg@20 : 0.0754    ndcg@50 : 0.0993
+20 Jun 03:53    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:53    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:56    INFO  epoch 44 training [time: 164.70s, train_loss1: 27.9523, train_loss2: 4.5681, train_loss3: 6.2051]
+20 Jun 03:56    INFO  epoch 44 evaluating [time: 1.90s, valid_score: 0.129400]
+20 Jun 03:56    INFO  valid result: 
+recall@10 : 0.0834    recall@20 : 0.1294    recall@50 : 0.2222    ndcg@10 : 0.0618    ndcg@20 : 0.0757    ndcg@50 : 0.0998
+20 Jun 03:56    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:56    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:58    INFO  epoch 45 training [time: 164.33s, train_loss1: 27.6799, train_loss2: 4.5099, train_loss3: 6.1299]
+20 Jun 03:58    INFO  epoch 45 evaluating [time: 1.91s, valid_score: 0.130100]
+20 Jun 03:58    INFO  valid result: 
+recall@10 : 0.0832    recall@20 : 0.1301    recall@50 : 0.2222    ndcg@10 : 0.0618    ndcg@20 : 0.076    ndcg@50 : 0.0999
+20 Jun 03:58    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 03:58    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:01    INFO  epoch 46 training [time: 164.16s, train_loss1: 27.3866, train_loss2: 4.4533, train_loss3: 6.0571]
+20 Jun 04:01    INFO  epoch 46 evaluating [time: 1.94s, valid_score: 0.130500]
+20 Jun 04:01    INFO  valid result: 
+recall@10 : 0.0839    recall@20 : 0.1305    recall@50 : 0.2221    ndcg@10 : 0.0621    ndcg@20 : 0.0763    ndcg@50 : 0.1001
+20 Jun 04:01    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:01    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:04    INFO  epoch 47 training [time: 163.72s, train_loss1: 27.1671, train_loss2: 4.3886, train_loss3: 5.9734]
+20 Jun 04:04    INFO  epoch 47 evaluating [time: 2.04s, valid_score: 0.130800]
+20 Jun 04:04    INFO  valid result: 
+recall@10 : 0.0842    recall@20 : 0.1308    recall@50 : 0.2227    ndcg@10 : 0.0624    ndcg@20 : 0.0766    ndcg@50 : 0.1004
+20 Jun 04:04    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:04    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:07    INFO  epoch 48 training [time: 164.11s, train_loss1: 26.8042, train_loss2: 4.3354, train_loss3: 5.9046]
+20 Jun 04:07    INFO  epoch 48 evaluating [time: 1.86s, valid_score: 0.131000]
+20 Jun 04:07    INFO  valid result: 
+recall@10 : 0.0844    recall@20 : 0.131    recall@50 : 0.2232    ndcg@10 : 0.0627    ndcg@20 : 0.0769    ndcg@50 : 0.1008
+20 Jun 04:07    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:07    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:09    INFO  epoch 49 training [time: 164.17s, train_loss1: 26.7887, train_loss2: 4.2826, train_loss3: 5.8355]
+20 Jun 04:09    INFO  epoch 49 evaluating [time: 1.88s, valid_score: 0.131200]
+20 Jun 04:09    INFO  valid result: 
+recall@10 : 0.0848    recall@20 : 0.1312    recall@50 : 0.2233    ndcg@10 : 0.063    ndcg@20 : 0.0771    ndcg@50 : 0.101
+20 Jun 04:09    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:09    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:12    INFO  epoch 50 training [time: 164.28s, train_loss1: 26.2918, train_loss2: 4.2303, train_loss3: 5.7671]
+20 Jun 04:12    INFO  epoch 50 evaluating [time: 2.18s, valid_score: 0.131200]
+20 Jun 04:12    INFO  valid result: 
+recall@10 : 0.085    recall@20 : 0.1312    recall@50 : 0.224    ndcg@10 : 0.0631    ndcg@20 : 0.0772    ndcg@50 : 0.1012
+20 Jun 04:12    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:12    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:15    INFO  epoch 51 training [time: 163.87s, train_loss1: 25.9772, train_loss2: 4.1884, train_loss3: 5.7122]
+20 Jun 04:15    INFO  epoch 51 evaluating [time: 1.87s, valid_score: 0.131200]
+20 Jun 04:15    INFO  valid result: 
+recall@10 : 0.0851    recall@20 : 0.1312    recall@50 : 0.2238    ndcg@10 : 0.0634    ndcg@20 : 0.0773    ndcg@50 : 0.1014
+20 Jun 04:15    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:15    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:18    INFO  epoch 52 training [time: 163.56s, train_loss1: 25.7941, train_loss2: 4.1375, train_loss3: 5.6454]
+20 Jun 04:18    INFO  epoch 52 evaluating [time: 1.87s, valid_score: 0.132000]
+20 Jun 04:18    INFO  valid result: 
+recall@10 : 0.0853    recall@20 : 0.132    recall@50 : 0.2249    ndcg@10 : 0.0635    ndcg@20 : 0.0776    ndcg@50 : 0.1017
+20 Jun 04:18    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:18    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:21    INFO  epoch 53 training [time: 163.82s, train_loss1: 25.4805, train_loss2: 4.0981, train_loss3: 5.5934]
+20 Jun 04:21    INFO  epoch 53 evaluating [time: 1.98s, valid_score: 0.132500]
+20 Jun 04:21    INFO  valid result: 
+recall@10 : 0.0857    recall@20 : 0.1325    recall@50 : 0.2247    ndcg@10 : 0.0637    ndcg@20 : 0.0779    ndcg@50 : 0.1018
+20 Jun 04:21    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:21    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:23    INFO  epoch 54 training [time: 164.94s, train_loss1: 25.3378, train_loss2: 4.0418, train_loss3: 5.5190]
+20 Jun 04:23    INFO  epoch 54 evaluating [time: 2.01s, valid_score: 0.132000]
+20 Jun 04:23    INFO  valid result: 
+recall@10 : 0.0862    recall@20 : 0.132    recall@50 : 0.225    ndcg@10 : 0.0639    ndcg@20 : 0.0778    ndcg@50 : 0.1019
+20 Jun 04:26    INFO  epoch 55 training [time: 163.98s, train_loss1: 25.1167, train_loss2: 3.9983, train_loss3: 5.4612]
+20 Jun 04:26    INFO  epoch 55 evaluating [time: 2.04s, valid_score: 0.132900]
+20 Jun 04:26    INFO  valid result: 
+recall@10 : 0.0861    recall@20 : 0.1329    recall@50 : 0.2256    ndcg@10 : 0.064    ndcg@20 : 0.0782    ndcg@50 : 0.1022
+20 Jun 04:26    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:26    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:29    INFO  epoch 56 training [time: 162.21s, train_loss1: 24.7956, train_loss2: 3.9549, train_loss3: 5.4044]
+20 Jun 04:29    INFO  epoch 56 evaluating [time: 1.86s, valid_score: 0.132900]
+20 Jun 04:29    INFO  valid result: 
+recall@10 : 0.0864    recall@20 : 0.1329    recall@50 : 0.2252    ndcg@10 : 0.0644    ndcg@20 : 0.0785    ndcg@50 : 0.1024
+20 Jun 04:29    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:29    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:32    INFO  epoch 57 training [time: 162.49s, train_loss1: 24.8496, train_loss2: 3.9101, train_loss3: 5.3450]
+20 Jun 04:32    INFO  epoch 57 evaluating [time: 1.93s, valid_score: 0.133100]
+20 Jun 04:32    INFO  valid result: 
+recall@10 : 0.0865    recall@20 : 0.1331    recall@50 : 0.2255    ndcg@10 : 0.0645    ndcg@20 : 0.0786    ndcg@50 : 0.1026
+20 Jun 04:32    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:32    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:34    INFO  epoch 58 training [time: 161.76s, train_loss1: 24.6547, train_loss2: 3.8669, train_loss3: 5.2875]
+20 Jun 04:34    INFO  epoch 58 evaluating [time: 1.94s, valid_score: 0.133500]
+20 Jun 04:34    INFO  valid result: 
+recall@10 : 0.0867    recall@20 : 0.1335    recall@50 : 0.226    ndcg@10 : 0.0646    ndcg@20 : 0.0788    ndcg@50 : 0.1028
+20 Jun 04:34    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:34    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:37    INFO  epoch 59 training [time: 162.14s, train_loss1: 24.1471, train_loss2: 3.8243, train_loss3: 5.2313]
+20 Jun 04:37    INFO  epoch 59 evaluating [time: 1.96s, valid_score: 0.133600]
+20 Jun 04:37    INFO  valid result: 
+recall@10 : 0.0867    recall@20 : 0.1336    recall@50 : 0.2265    ndcg@10 : 0.0648    ndcg@20 : 0.079    ndcg@50 : 0.103
+20 Jun 04:37    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:37    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:40    INFO  epoch 60 training [time: 161.97s, train_loss1: 24.2497, train_loss2: 3.7939, train_loss3: 5.1902]
+20 Jun 04:40    INFO  epoch 60 evaluating [time: 1.99s, valid_score: 0.133800]
+20 Jun 04:40    INFO  valid result: 
+recall@10 : 0.0872    recall@20 : 0.1338    recall@50 : 0.2267    ndcg@10 : 0.0652    ndcg@20 : 0.0793    ndcg@50 : 0.1033
+20 Jun 04:40    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:40    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:43    INFO  epoch 61 training [time: 162.32s, train_loss1: 23.9279, train_loss2: 3.7537, train_loss3: 5.1363]
+20 Jun 04:43    INFO  epoch 61 evaluating [time: 1.96s, valid_score: 0.134300]
+20 Jun 04:43    INFO  valid result: 
+recall@10 : 0.087    recall@20 : 0.1343    recall@50 : 0.2271    ndcg@10 : 0.0651    ndcg@20 : 0.0794    ndcg@50 : 0.1034
+20 Jun 04:43    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:43    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:45    INFO  epoch 62 training [time: 162.72s, train_loss1: 23.6551, train_loss2: 3.7223, train_loss3: 5.0933]
+20 Jun 04:45    INFO  epoch 62 evaluating [time: 2.02s, valid_score: 0.134000]
+20 Jun 04:45    INFO  valid result: 
+recall@10 : 0.0873    recall@20 : 0.134    recall@50 : 0.2272    ndcg@10 : 0.0653    ndcg@20 : 0.0794    ndcg@50 : 0.1036
+20 Jun 04:48    INFO  epoch 63 training [time: 162.18s, train_loss1: 23.5598, train_loss2: 3.6825, train_loss3: 5.0409]
+20 Jun 04:48    INFO  epoch 63 evaluating [time: 1.82s, valid_score: 0.134500]
+20 Jun 04:48    INFO  valid result: 
+recall@10 : 0.0875    recall@20 : 0.1345    recall@50 : 0.2272    ndcg@10 : 0.0655    ndcg@20 : 0.0797    ndcg@50 : 0.1038
+20 Jun 04:48    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:48    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:51    INFO  epoch 64 training [time: 162.29s, train_loss1: 23.3509, train_loss2: 3.6449, train_loss3: 4.9900]
+20 Jun 04:51    INFO  epoch 64 evaluating [time: 1.91s, valid_score: 0.134600]
+20 Jun 04:51    INFO  valid result: 
+recall@10 : 0.0872    recall@20 : 0.1346    recall@50 : 0.2278    ndcg@10 : 0.0655    ndcg@20 : 0.0798    ndcg@50 : 0.1039
+20 Jun 04:51    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:51    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:54    INFO  epoch 65 training [time: 162.66s, train_loss1: 23.2592, train_loss2: 3.6036, train_loss3: 4.9347]
+20 Jun 04:54    INFO  epoch 65 evaluating [time: 2.32s, valid_score: 0.134600]
+20 Jun 04:54    INFO  valid result: 
+recall@10 : 0.0876    recall@20 : 0.1346    recall@50 : 0.2274    ndcg@10 : 0.0657    ndcg@20 : 0.0799    ndcg@50 : 0.1039
+20 Jun 04:54    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:54    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:56    INFO  epoch 66 training [time: 163.43s, train_loss1: 22.9411, train_loss2: 3.5811, train_loss3: 4.9033]
+20 Jun 04:56    INFO  epoch 66 evaluating [time: 1.94s, valid_score: 0.134900]
+20 Jun 04:56    INFO  valid result: 
+recall@10 : 0.0872    recall@20 : 0.1349    recall@50 : 0.2269    ndcg@10 : 0.0657    ndcg@20 : 0.0801    ndcg@50 : 0.104
+20 Jun 04:56    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:56    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 04:59    INFO  epoch 67 training [time: 162.65s, train_loss1: 22.9248, train_loss2: 3.5476, train_loss3: 4.8581]
+20 Jun 04:59    INFO  epoch 67 evaluating [time: 1.92s, valid_score: 0.134800]
+20 Jun 04:59    INFO  valid result: 
+recall@10 : 0.0873    recall@20 : 0.1348    recall@50 : 0.2276    ndcg@10 : 0.0657    ndcg@20 : 0.0801    ndcg@50 : 0.1042
+20 Jun 05:02    INFO  epoch 68 training [time: 162.04s, train_loss1: 22.4195, train_loss2: 3.5139, train_loss3: 4.8126]
+20 Jun 05:02    INFO  epoch 68 evaluating [time: 1.87s, valid_score: 0.134900]
+20 Jun 05:02    INFO  valid result: 
+recall@10 : 0.0875    recall@20 : 0.1349    recall@50 : 0.2275    ndcg@10 : 0.0657    ndcg@20 : 0.0801    ndcg@50 : 0.1041
+20 Jun 05:02    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:02    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:05    INFO  epoch 69 training [time: 162.63s, train_loss1: 22.4152, train_loss2: 3.4891, train_loss3: 4.7780]
+20 Jun 05:05    INFO  epoch 69 evaluating [time: 1.88s, valid_score: 0.135300]
+20 Jun 05:05    INFO  valid result: 
+recall@10 : 0.0879    recall@20 : 0.1353    recall@50 : 0.2279    ndcg@10 : 0.0659    ndcg@20 : 0.0802    ndcg@50 : 0.1043
+20 Jun 05:05    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:05    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:07    INFO  epoch 70 training [time: 161.36s, train_loss1: 22.4153, train_loss2: 3.4471, train_loss3: 4.7222]
+20 Jun 05:07    INFO  epoch 70 evaluating [time: 2.05s, valid_score: 0.135400]
+20 Jun 05:07    INFO  valid result: 
+recall@10 : 0.0875    recall@20 : 0.1354    recall@50 : 0.2284    ndcg@10 : 0.0658    ndcg@20 : 0.0803    ndcg@50 : 0.1044
+20 Jun 05:07    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:07    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:10    INFO  epoch 71 training [time: 161.91s, train_loss1: 22.1702, train_loss2: 3.4240, train_loss3: 4.6898]
+20 Jun 05:10    INFO  epoch 71 evaluating [time: 2.76s, valid_score: 0.135300]
+20 Jun 05:10    INFO  valid result: 
+recall@10 : 0.0877    recall@20 : 0.1353    recall@50 : 0.2287    ndcg@10 : 0.0659    ndcg@20 : 0.0803    ndcg@50 : 0.1045
+20 Jun 05:13    INFO  epoch 72 training [time: 162.69s, train_loss1: 22.0029, train_loss2: 3.4000, train_loss3: 4.6559]
+20 Jun 05:13    INFO  epoch 72 evaluating [time: 1.98s, valid_score: 0.135500]
+20 Jun 05:13    INFO  valid result: 
+recall@10 : 0.0884    recall@20 : 0.1355    recall@50 : 0.2289    ndcg@10 : 0.0661    ndcg@20 : 0.0804    ndcg@50 : 0.1046
+20 Jun 05:13    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:13    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:15    INFO  epoch 73 training [time: 162.89s, train_loss1: 22.0788, train_loss2: 3.3658, train_loss3: 4.6093]
+20 Jun 05:16    INFO  epoch 73 evaluating [time: 1.97s, valid_score: 0.135600]
+20 Jun 05:16    INFO  valid result: 
+recall@10 : 0.0887    recall@20 : 0.1356    recall@50 : 0.2291    ndcg@10 : 0.0664    ndcg@20 : 0.0805    ndcg@50 : 0.1047
+20 Jun 05:16    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:16    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:18    INFO  epoch 74 training [time: 162.30s, train_loss1: 21.7328, train_loss2: 3.3402, train_loss3: 4.5750]
+20 Jun 05:18    INFO  epoch 74 evaluating [time: 2.02s, valid_score: 0.135500]
+20 Jun 05:18    INFO  valid result: 
+recall@10 : 0.0885    recall@20 : 0.1355    recall@50 : 0.2288    ndcg@10 : 0.0665    ndcg@20 : 0.0806    ndcg@50 : 0.1048
+20 Jun 05:21    INFO  epoch 75 training [time: 162.89s, train_loss1: 21.6482, train_loss2: 3.3147, train_loss3: 4.5401]
+20 Jun 05:21    INFO  epoch 75 evaluating [time: 1.93s, valid_score: 0.135900]
+20 Jun 05:21    INFO  valid result: 
+recall@10 : 0.089    recall@20 : 0.1359    recall@50 : 0.2292    ndcg@10 : 0.0667    ndcg@20 : 0.0808    ndcg@50 : 0.105
+20 Jun 05:21    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:21    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:24    INFO  epoch 76 training [time: 162.80s, train_loss1: 21.4624, train_loss2: 3.2859, train_loss3: 4.4998]
+20 Jun 05:24    INFO  epoch 76 evaluating [time: 1.89s, valid_score: 0.136000]
+20 Jun 05:24    INFO  valid result: 
+recall@10 : 0.0888    recall@20 : 0.136    recall@50 : 0.2288    ndcg@10 : 0.0668    ndcg@20 : 0.081    ndcg@50 : 0.105
+20 Jun 05:24    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:24    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:26    INFO  epoch 77 training [time: 162.42s, train_loss1: 21.3858, train_loss2: 3.2642, train_loss3: 4.4694]
+20 Jun 05:27    INFO  epoch 77 evaluating [time: 1.98s, valid_score: 0.136100]
+20 Jun 05:27    INFO  valid result: 
+recall@10 : 0.0888    recall@20 : 0.1361    recall@50 : 0.2293    ndcg@10 : 0.0666    ndcg@20 : 0.0809    ndcg@50 : 0.105
+20 Jun 05:27    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:27    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:29    INFO  epoch 78 training [time: 162.81s, train_loss1: 21.1152, train_loss2: 3.2434, train_loss3: 4.4408]
+20 Jun 05:29    INFO  epoch 78 evaluating [time: 1.93s, valid_score: 0.135900]
+20 Jun 05:29    INFO  valid result: 
+recall@10 : 0.089    recall@20 : 0.1359    recall@50 : 0.2291    ndcg@10 : 0.0668    ndcg@20 : 0.0809    ndcg@50 : 0.1051
+20 Jun 05:32    INFO  epoch 79 training [time: 161.98s, train_loss1: 21.1581, train_loss2: 3.2238, train_loss3: 4.4133]
+20 Jun 05:32    INFO  epoch 79 evaluating [time: 1.95s, valid_score: 0.136100]
+20 Jun 05:32    INFO  valid result: 
+recall@10 : 0.089    recall@20 : 0.1361    recall@50 : 0.2293    ndcg@10 : 0.0668    ndcg@20 : 0.081    ndcg@50 : 0.1051
+20 Jun 05:32    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:32    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:35    INFO  epoch 80 training [time: 162.49s, train_loss1: 20.9309, train_loss2: 3.1936, train_loss3: 4.3721]
+20 Jun 05:35    INFO  epoch 80 evaluating [time: 1.94s, valid_score: 0.136200]
+20 Jun 05:35    INFO  valid result: 
+recall@10 : 0.0892    recall@20 : 0.1362    recall@50 : 0.2289    ndcg@10 : 0.067    ndcg@20 : 0.0811    ndcg@50 : 0.1052
+20 Jun 05:35    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:35    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:37    INFO  epoch 81 training [time: 162.67s, train_loss1: 20.9774, train_loss2: 3.1667, train_loss3: 4.3349]
+20 Jun 05:38    INFO  epoch 81 evaluating [time: 1.87s, valid_score: 0.136000]
+20 Jun 05:38    INFO  valid result: 
+recall@10 : 0.0891    recall@20 : 0.136    recall@50 : 0.2286    ndcg@10 : 0.067    ndcg@20 : 0.0812    ndcg@50 : 0.1052
+20 Jun 05:40    INFO  epoch 82 training [time: 163.31s, train_loss1: 20.8666, train_loss2: 3.1410, train_loss3: 4.2996]
+20 Jun 05:40    INFO  epoch 82 evaluating [time: 2.00s, valid_score: 0.136400]
+20 Jun 05:40    INFO  valid result: 
+recall@10 : 0.0894    recall@20 : 0.1364    recall@50 : 0.2292    ndcg@10 : 0.0672    ndcg@20 : 0.0814    ndcg@50 : 0.1055
+20 Jun 05:40    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:40    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:43    INFO  epoch 83 training [time: 163.39s, train_loss1: 20.6836, train_loss2: 3.1261, train_loss3: 4.2777]
+20 Jun 05:43    INFO  epoch 83 evaluating [time: 1.92s, valid_score: 0.135700]
+20 Jun 05:43    INFO  valid result: 
+recall@10 : 0.0893    recall@20 : 0.1357    recall@50 : 0.2292    ndcg@10 : 0.0673    ndcg@20 : 0.0813    ndcg@50 : 0.1055
+20 Jun 05:46    INFO  epoch 84 training [time: 162.06s, train_loss1: 20.5632, train_loss2: 3.1067, train_loss3: 4.2502]
+20 Jun 05:46    INFO  epoch 84 evaluating [time: 1.86s, valid_score: 0.135900]
+20 Jun 05:46    INFO  valid result: 
+recall@10 : 0.0896    recall@20 : 0.1359    recall@50 : 0.2292    ndcg@10 : 0.0674    ndcg@20 : 0.0814    ndcg@50 : 0.1056
+20 Jun 05:48    INFO  epoch 85 training [time: 161.71s, train_loss1: 20.4956, train_loss2: 3.0718, train_loss3: 4.2036]
+20 Jun 05:48    INFO  epoch 85 evaluating [time: 1.85s, valid_score: 0.136200]
+20 Jun 05:48    INFO  valid result: 
+recall@10 : 0.0898    recall@20 : 0.1362    recall@50 : 0.2295    ndcg@10 : 0.0676    ndcg@20 : 0.0816    ndcg@50 : 0.1058
+20 Jun 05:51    INFO  epoch 86 training [time: 161.53s, train_loss1: 20.4078, train_loss2: 3.0508, train_loss3: 4.1743]
+20 Jun 05:51    INFO  epoch 86 evaluating [time: 1.89s, valid_score: 0.136500]
+20 Jun 05:51    INFO  valid result: 
+recall@10 : 0.0897    recall@20 : 0.1365    recall@50 : 0.2296    ndcg@10 : 0.0676    ndcg@20 : 0.0817    ndcg@50 : 0.1058
+20 Jun 05:51    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:51    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 05:54    INFO  epoch 87 training [time: 162.03s, train_loss1: 20.1961, train_loss2: 3.0404, train_loss3: 4.1579]
+20 Jun 05:54    INFO  epoch 87 evaluating [time: 2.29s, valid_score: 0.136300]
+20 Jun 05:54    INFO  valid result: 
+recall@10 : 0.0899    recall@20 : 0.1363    recall@50 : 0.23    ndcg@10 : 0.0677    ndcg@20 : 0.0817    ndcg@50 : 0.106
+20 Jun 05:57    INFO  epoch 88 training [time: 162.66s, train_loss1: 20.2197, train_loss2: 3.0183, train_loss3: 4.1271]
+20 Jun 05:57    INFO  epoch 88 evaluating [time: 1.85s, valid_score: 0.136000]
+20 Jun 05:57    INFO  valid result: 
+recall@10 : 0.0897    recall@20 : 0.136    recall@50 : 0.2297    ndcg@10 : 0.0677    ndcg@20 : 0.0817    ndcg@50 : 0.106
+20 Jun 05:59    INFO  epoch 89 training [time: 162.39s, train_loss1: 20.2251, train_loss2: 2.9966, train_loss3: 4.0964]
+20 Jun 05:59    INFO  epoch 89 evaluating [time: 1.96s, valid_score: 0.136300]
+20 Jun 05:59    INFO  valid result: 
+recall@10 : 0.0901    recall@20 : 0.1363    recall@50 : 0.2297    ndcg@10 : 0.0679    ndcg@20 : 0.0818    ndcg@50 : 0.1061
+20 Jun 06:02    INFO  epoch 90 training [time: 162.58s, train_loss1: 19.9957, train_loss2: 2.9812, train_loss3: 4.0751]
+20 Jun 06:02    INFO  epoch 90 evaluating [time: 1.93s, valid_score: 0.136600]
+20 Jun 06:02    INFO  valid result: 
+recall@10 : 0.0902    recall@20 : 0.1366    recall@50 : 0.2298    ndcg@10 : 0.068    ndcg@20 : 0.0819    ndcg@50 : 0.1061
+20 Jun 06:02    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:02    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:05    INFO  epoch 91 training [time: 162.88s, train_loss1: 19.8257, train_loss2: 2.9548, train_loss3: 4.0383]
+20 Jun 06:05    INFO  epoch 91 evaluating [time: 1.99s, valid_score: 0.136700]
+20 Jun 06:05    INFO  valid result: 
+recall@10 : 0.0901    recall@20 : 0.1367    recall@50 : 0.2306    ndcg@10 : 0.068    ndcg@20 : 0.082    ndcg@50 : 0.1063
+20 Jun 06:05    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:05    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:08    INFO  epoch 92 training [time: 162.75s, train_loss1: 19.8399, train_loss2: 2.9435, train_loss3: 4.0214]
+20 Jun 06:08    INFO  epoch 92 evaluating [time: 1.97s, valid_score: 0.136500]
+20 Jun 06:08    INFO  valid result: 
+recall@10 : 0.0904    recall@20 : 0.1365    recall@50 : 0.2303    ndcg@10 : 0.0681    ndcg@20 : 0.082    ndcg@50 : 0.1063
+20 Jun 06:10    INFO  epoch 93 training [time: 162.84s, train_loss1: 19.7784, train_loss2: 2.9215, train_loss3: 3.9907]
+20 Jun 06:10    INFO  epoch 93 evaluating [time: 1.99s, valid_score: 0.136400]
+20 Jun 06:10    INFO  valid result: 
+recall@10 : 0.0902    recall@20 : 0.1364    recall@50 : 0.2303    ndcg@10 : 0.0681    ndcg@20 : 0.082    ndcg@50 : 0.1064
+20 Jun 06:13    INFO  epoch 94 training [time: 163.49s, train_loss1: 19.5253, train_loss2: 2.9118, train_loss3: 3.9753]
+20 Jun 06:13    INFO  epoch 94 evaluating [time: 1.95s, valid_score: 0.136700]
+20 Jun 06:13    INFO  valid result: 
+recall@10 : 0.0903    recall@20 : 0.1367    recall@50 : 0.2305    ndcg@10 : 0.0682    ndcg@20 : 0.0822    ndcg@50 : 0.1064
+20 Jun 06:13    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:13    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:16    INFO  epoch 95 training [time: 163.04s, train_loss1: 19.5366, train_loss2: 2.8948, train_loss3: 3.9505]
+20 Jun 06:16    INFO  epoch 95 evaluating [time: 1.89s, valid_score: 0.136700]
+20 Jun 06:16    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1367    recall@50 : 0.23    ndcg@10 : 0.0683    ndcg@20 : 0.0822    ndcg@50 : 0.1063
+20 Jun 06:16    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:16    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:19    INFO  epoch 96 training [time: 162.90s, train_loss1: 19.4315, train_loss2: 2.8774, train_loss3: 3.9265]
+20 Jun 06:19    INFO  epoch 96 evaluating [time: 1.92s, valid_score: 0.136400]
+20 Jun 06:19    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1364    recall@50 : 0.2298    ndcg@10 : 0.0682    ndcg@20 : 0.0821    ndcg@50 : 0.1063
+20 Jun 06:21    INFO  epoch 97 training [time: 162.39s, train_loss1: 19.3521, train_loss2: 2.8661, train_loss3: 3.9082]
+20 Jun 06:21    INFO  epoch 97 evaluating [time: 1.95s, valid_score: 0.136800]
+20 Jun 06:21    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1368    recall@50 : 0.2297    ndcg@10 : 0.0683    ndcg@20 : 0.0822    ndcg@50 : 0.1063
+20 Jun 06:21    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:21    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:24    INFO  epoch 98 training [time: 162.03s, train_loss1: 19.2135, train_loss2: 2.8513, train_loss3: 3.8867]
+20 Jun 06:24    INFO  epoch 98 evaluating [time: 1.98s, valid_score: 0.136900]
+20 Jun 06:24    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1369    recall@50 : 0.2301    ndcg@10 : 0.0684    ndcg@20 : 0.0824    ndcg@50 : 0.1065
+20 Jun 06:24    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:24    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:27    INFO  epoch 99 training [time: 162.61s, train_loss1: 19.1579, train_loss2: 2.8339, train_loss3: 3.8624]
+20 Jun 06:27    INFO  epoch 99 evaluating [time: 2.05s, valid_score: 0.137000]
+20 Jun 06:27    INFO  valid result: 
+recall@10 : 0.0907    recall@20 : 0.137    recall@50 : 0.2294    ndcg@10 : 0.0684    ndcg@20 : 0.0824    ndcg@50 : 0.1063
+20 Jun 06:27    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:27    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:30    INFO  epoch 100 training [time: 162.35s, train_loss1: 19.1468, train_loss2: 2.8199, train_loss3: 3.8424]
+20 Jun 06:30    INFO  epoch 100 evaluating [time: 2.05s, valid_score: 0.136600]
+20 Jun 06:30    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1366    recall@50 : 0.23    ndcg@10 : 0.0685    ndcg@20 : 0.0824    ndcg@50 : 0.1066
+20 Jun 06:32    INFO  epoch 101 training [time: 163.26s, train_loss1: 18.9262, train_loss2: 2.8087, train_loss3: 3.8253]
+20 Jun 06:32    INFO  epoch 101 evaluating [time: 1.96s, valid_score: 0.136800]
+20 Jun 06:32    INFO  valid result: 
+recall@10 : 0.0909    recall@20 : 0.1368    recall@50 : 0.2295    ndcg@10 : 0.0685    ndcg@20 : 0.0824    ndcg@50 : 0.1065
+20 Jun 06:35    INFO  epoch 102 training [time: 162.53s, train_loss1: 18.8746, train_loss2: 2.7910, train_loss3: 3.8006]
+20 Jun 06:35    INFO  epoch 102 evaluating [time: 2.02s, valid_score: 0.137700]
+20 Jun 06:35    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1377    recall@50 : 0.229    ndcg@10 : 0.0684    ndcg@20 : 0.0826    ndcg@50 : 0.1063
+20 Jun 06:35    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:35    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:38    INFO  epoch 103 training [time: 161.74s, train_loss1: 19.0109, train_loss2: 2.7759, train_loss3: 3.7793]
+20 Jun 06:38    INFO  epoch 103 evaluating [time: 2.01s, valid_score: 0.137300]
+20 Jun 06:38    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1373    recall@50 : 0.2295    ndcg@10 : 0.0684    ndcg@20 : 0.0826    ndcg@50 : 0.1065
+20 Jun 06:41    INFO  epoch 104 training [time: 162.66s, train_loss1: 18.7093, train_loss2: 2.7605, train_loss3: 3.7575]
+20 Jun 06:41    INFO  epoch 104 evaluating [time: 2.02s, valid_score: 0.137600]
+20 Jun 06:41    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1376    recall@50 : 0.2292    ndcg@10 : 0.0684    ndcg@20 : 0.0826    ndcg@50 : 0.1064
+20 Jun 06:43    INFO  epoch 105 training [time: 163.53s, train_loss1: 18.7358, train_loss2: 2.7498, train_loss3: 3.7422]
+20 Jun 06:43    INFO  epoch 105 evaluating [time: 2.01s, valid_score: 0.137400]
+20 Jun 06:43    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1374    recall@50 : 0.2296    ndcg@10 : 0.0685    ndcg@20 : 0.0827    ndcg@50 : 0.1066
+20 Jun 06:46    INFO  epoch 106 training [time: 162.85s, train_loss1: 18.4841, train_loss2: 2.7315, train_loss3: 3.7170]
+20 Jun 06:46    INFO  epoch 106 evaluating [time: 2.05s, valid_score: 0.137300]
+20 Jun 06:46    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1373    recall@50 : 0.2297    ndcg@10 : 0.0686    ndcg@20 : 0.0827    ndcg@50 : 0.1067
+20 Jun 06:49    INFO  epoch 107 training [time: 163.18s, train_loss1: 18.4469, train_loss2: 2.7181, train_loss3: 3.6974]
+20 Jun 06:49    INFO  epoch 107 evaluating [time: 1.90s, valid_score: 0.137300]
+20 Jun 06:49    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1373    recall@50 : 0.2299    ndcg@10 : 0.0686    ndcg@20 : 0.0828    ndcg@50 : 0.1068
+20 Jun 06:52    INFO  epoch 108 training [time: 163.99s, train_loss1: 18.7284, train_loss2: 2.7055, train_loss3: 3.6799]
+20 Jun 06:52    INFO  epoch 108 evaluating [time: 1.99s, valid_score: 0.137300]
+20 Jun 06:52    INFO  valid result: 
+recall@10 : 0.0898    recall@20 : 0.1373    recall@50 : 0.2291    ndcg@10 : 0.0684    ndcg@20 : 0.0828    ndcg@50 : 0.1067
+20 Jun 06:54    INFO  epoch 109 training [time: 162.80s, train_loss1: 18.5811, train_loss2: 2.6975, train_loss3: 3.6660]
+20 Jun 06:54    INFO  epoch 109 evaluating [time: 1.85s, valid_score: 0.137500]
+20 Jun 06:54    INFO  valid result: 
+recall@10 : 0.0902    recall@20 : 0.1375    recall@50 : 0.2293    ndcg@10 : 0.0686    ndcg@20 : 0.0829    ndcg@50 : 0.1068
+20 Jun 06:57    INFO  epoch 110 training [time: 161.90s, train_loss1: 18.4038, train_loss2: 2.6869, train_loss3: 3.6500]
+20 Jun 06:57    INFO  epoch 110 evaluating [time: 1.92s, valid_score: 0.137700]
+20 Jun 06:57    INFO  valid result: 
+recall@10 : 0.0903    recall@20 : 0.1377    recall@50 : 0.2287    ndcg@10 : 0.0686    ndcg@20 : 0.083    ndcg@50 : 0.1066
+20 Jun 06:57    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 06:57    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:00    INFO  epoch 111 training [time: 162.81s, train_loss1: 18.4193, train_loss2: 2.6731, train_loss3: 3.6304]
+20 Jun 07:00    INFO  epoch 111 evaluating [time: 1.87s, valid_score: 0.137700]
+20 Jun 07:00    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1377    recall@50 : 0.2294    ndcg@10 : 0.0688    ndcg@20 : 0.0831    ndcg@50 : 0.1069
+20 Jun 07:00    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:00    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:03    INFO  epoch 112 training [time: 163.07s, train_loss1: 18.1841, train_loss2: 2.6592, train_loss3: 3.6110]
+20 Jun 07:03    INFO  epoch 112 evaluating [time: 2.57s, valid_score: 0.137700]
+20 Jun 07:03    INFO  valid result: 
+recall@10 : 0.0902    recall@20 : 0.1377    recall@50 : 0.2293    ndcg@10 : 0.0687    ndcg@20 : 0.0831    ndcg@50 : 0.1069
+20 Jun 07:03    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:03    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:05    INFO  epoch 113 training [time: 162.76s, train_loss1: 18.2176, train_loss2: 2.6485, train_loss3: 3.5955]
+20 Jun 07:05    INFO  epoch 113 evaluating [time: 1.97s, valid_score: 0.137700]
+20 Jun 07:05    INFO  valid result: 
+recall@10 : 0.0903    recall@20 : 0.1377    recall@50 : 0.2289    ndcg@10 : 0.0687    ndcg@20 : 0.083    ndcg@50 : 0.1067
+20 Jun 07:05    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:05    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:08    INFO  epoch 114 training [time: 162.92s, train_loss1: 18.1203, train_loss2: 2.6332, train_loss3: 3.5736]
+20 Jun 07:08    INFO  epoch 114 evaluating [time: 1.96s, valid_score: 0.137600]
+20 Jun 07:08    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1376    recall@50 : 0.229    ndcg@10 : 0.069    ndcg@20 : 0.0832    ndcg@50 : 0.1069
+20 Jun 07:11    INFO  epoch 115 training [time: 163.20s, train_loss1: 18.0068, train_loss2: 2.6279, train_loss3: 3.5653]
+20 Jun 07:11    INFO  epoch 115 evaluating [time: 2.11s, valid_score: 0.137600]
+20 Jun 07:11    INFO  valid result: 
+recall@10 : 0.0909    recall@20 : 0.1376    recall@50 : 0.2294    ndcg@10 : 0.0691    ndcg@20 : 0.0832    ndcg@50 : 0.107
+20 Jun 07:14    INFO  epoch 116 training [time: 162.66s, train_loss1: 17.9370, train_loss2: 2.6123, train_loss3: 3.5432]
+20 Jun 07:14    INFO  epoch 116 evaluating [time: 1.99s, valid_score: 0.137400]
+20 Jun 07:14    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1374    recall@50 : 0.2293    ndcg@10 : 0.069    ndcg@20 : 0.0831    ndcg@50 : 0.107
+20 Jun 07:16    INFO  epoch 117 training [time: 162.77s, train_loss1: 18.0054, train_loss2: 2.6084, train_loss3: 3.5365]
+20 Jun 07:16    INFO  epoch 117 evaluating [time: 1.99s, valid_score: 0.137800]
+20 Jun 07:16    INFO  valid result: 
+recall@10 : 0.0907    recall@20 : 0.1378    recall@50 : 0.2292    ndcg@10 : 0.0691    ndcg@20 : 0.0834    ndcg@50 : 0.1071
+20 Jun 07:16    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:16    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:19    INFO  epoch 118 training [time: 162.20s, train_loss1: 17.9776, train_loss2: 2.5994, train_loss3: 3.5232]
+20 Jun 07:19    INFO  epoch 118 evaluating [time: 1.88s, valid_score: 0.138000]
+20 Jun 07:19    INFO  valid result: 
+recall@10 : 0.0911    recall@20 : 0.138    recall@50 : 0.2292    ndcg@10 : 0.0692    ndcg@20 : 0.0834    ndcg@50 : 0.1071
+20 Jun 07:19    INFO  Saving current: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:19    INFO  Saving current best: saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:22    INFO  epoch 119 training [time: 162.77s, train_loss1: 17.7806, train_loss2: 2.5882, train_loss3: 3.5067]
+20 Jun 07:22    INFO  epoch 119 evaluating [time: 1.94s, valid_score: 0.137800]
+20 Jun 07:22    INFO  valid result: 
+recall@10 : 0.0909    recall@20 : 0.1378    recall@50 : 0.2289    ndcg@10 : 0.0692    ndcg@20 : 0.0833    ndcg@50 : 0.107
+20 Jun 07:25    INFO  epoch 120 training [time: 162.56s, train_loss1: 17.7582, train_loss2: 2.5749, train_loss3: 3.4881]
+20 Jun 07:25    INFO  epoch 120 evaluating [time: 1.95s, valid_score: 0.137500]
+20 Jun 07:25    INFO  valid result: 
+recall@10 : 0.0907    recall@20 : 0.1375    recall@50 : 0.2295    ndcg@10 : 0.0692    ndcg@20 : 0.0833    ndcg@50 : 0.1072
+20 Jun 07:27    INFO  epoch 121 training [time: 162.00s, train_loss1: 17.8806, train_loss2: 2.5600, train_loss3: 3.4672]
+20 Jun 07:27    INFO  epoch 121 evaluating [time: 1.92s, valid_score: 0.137200]
+20 Jun 07:27    INFO  valid result: 
+recall@10 : 0.0907    recall@20 : 0.1372    recall@50 : 0.2286    ndcg@10 : 0.0691    ndcg@20 : 0.0831    ndcg@50 : 0.1069
+20 Jun 07:30    INFO  epoch 122 training [time: 162.21s, train_loss1: 17.8796, train_loss2: 2.5503, train_loss3: 3.4526]
+20 Jun 07:30    INFO  epoch 122 evaluating [time: 1.93s, valid_score: 0.137100]
+20 Jun 07:30    INFO  valid result: 
+recall@10 : 0.0904    recall@20 : 0.1371    recall@50 : 0.2287    ndcg@10 : 0.0691    ndcg@20 : 0.0832    ndcg@50 : 0.107
+20 Jun 07:33    INFO  epoch 123 training [time: 162.31s, train_loss1: 17.5367, train_loss2: 2.5465, train_loss3: 3.4457]
+20 Jun 07:33    INFO  epoch 123 evaluating [time: 1.99s, valid_score: 0.137200]
+20 Jun 07:33    INFO  valid result: 
+recall@10 : 0.0905    recall@20 : 0.1372    recall@50 : 0.229    ndcg@10 : 0.0691    ndcg@20 : 0.0832    ndcg@50 : 0.107
+20 Jun 07:36    INFO  epoch 124 training [time: 162.06s, train_loss1: 17.6628, train_loss2: 2.5345, train_loss3: 3.4283]
+20 Jun 07:36    INFO  epoch 124 evaluating [time: 2.02s, valid_score: 0.137200]
+20 Jun 07:36    INFO  valid result: 
+recall@10 : 0.0906    recall@20 : 0.1372    recall@50 : 0.2287    ndcg@10 : 0.0692    ndcg@20 : 0.0832    ndcg@50 : 0.1069
+20 Jun 07:38    INFO  epoch 125 training [time: 162.79s, train_loss1: 17.6122, train_loss2: 2.5253, train_loss3: 3.4152]
+20 Jun 07:38    INFO  epoch 125 evaluating [time: 1.98s, valid_score: 0.137600]
+20 Jun 07:38    INFO  valid result: 
+recall@10 : 0.0903    recall@20 : 0.1376    recall@50 : 0.2295    ndcg@10 : 0.0692    ndcg@20 : 0.0834    ndcg@50 : 0.1073
+20 Jun 07:41    INFO  epoch 126 training [time: 162.89s, train_loss1: 17.5675, train_loss2: 2.5108, train_loss3: 3.3954]
+20 Jun 07:41    INFO  epoch 126 evaluating [time: 2.10s, valid_score: 0.137000]
+20 Jun 07:41    INFO  valid result: 
+recall@10 : 0.0908    recall@20 : 0.137    recall@50 : 0.2294    ndcg@10 : 0.0692    ndcg@20 : 0.0832    ndcg@50 : 0.1071
+20 Jun 07:44    INFO  epoch 127 training [time: 162.78s, train_loss1: 17.6004, train_loss2: 2.5032, train_loss3: 3.3844]
+20 Jun 07:44    INFO  epoch 127 evaluating [time: 1.96s, valid_score: 0.137300]
+20 Jun 07:44    INFO  valid result: 
+recall@10 : 0.0908    recall@20 : 0.1373    recall@50 : 0.2291    ndcg@10 : 0.0692    ndcg@20 : 0.0832    ndcg@50 : 0.1071
+20 Jun 07:47    INFO  epoch 128 training [time: 162.62s, train_loss1: 17.4312, train_loss2: 2.4940, train_loss3: 3.3702]
+20 Jun 07:47    INFO  epoch 128 evaluating [time: 1.99s, valid_score: 0.137600]
+20 Jun 07:47    INFO  valid result: 
+recall@10 : 0.091    recall@20 : 0.1376    recall@50 : 0.2291    ndcg@10 : 0.0693    ndcg@20 : 0.0834    ndcg@50 : 0.1071
+20 Jun 07:49    INFO  epoch 129 training [time: 162.64s, train_loss1: 17.4260, train_loss2: 2.4870, train_loss3: 3.3596]
+20 Jun 07:49    INFO  epoch 129 evaluating [time: 2.00s, valid_score: 0.137100]
+20 Jun 07:49    INFO  valid result: 
+recall@10 : 0.0908    recall@20 : 0.1371    recall@50 : 0.229    ndcg@10 : 0.0693    ndcg@20 : 0.0832    ndcg@50 : 0.1071
+20 Jun 07:49    INFO  Finished training, best eval result in epoch 118
+20 Jun 07:49    INFO  Loading model structure and parameters from saved/NCL-Jun-20-2022_01-52-20.pth
+20 Jun 07:49    INFO  best valid : OrderedDict([('recall@10', 0.0911), ('recall@20', 0.138), ('recall@50', 0.2292), ('ndcg@10', 0.0692), ('ndcg@20', 0.0834), ('ndcg@50', 0.1071)])
+20 Jun 07:49    INFO  test result: OrderedDict([('recall@10', 0.0939), ('recall@20', 0.14), ('recall@50', 0.2297), ('ndcg@10', 0.0712), ('ndcg@20', 0.0851), ('ndcg@50', 0.1085)])
