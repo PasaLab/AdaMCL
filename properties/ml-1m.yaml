@@ -1,0 +1,19 @@
+load_col:
+  inter: [user_id, item_id, rating]
+
+user_inter_num_interval: "[0,inf)"
+item_inter_num_interval: "[0,inf)"
+val_interval:
+  rating: "[3,inf)"
+
+gpu_id: 0
+dataset: 'ml-1m'
+TopK: 10
+user_threshold: 0.8
+item_threshold: 0.8
+
+ssl_reg: 1e-7
+ssl_temp: 0.1
+info_reg: 1e-6
+alpha: 0.2
+gamma: 1.05

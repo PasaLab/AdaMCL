@@ -1,0 +1,23 @@
+load_col:
+  inter: [user_id, item_id]
+
+user_inter_num_interval: "[10,inf)"
+item_inter_num_interval: "[10,inf)"
+
+
+gpu_id: 0
+dataset: 'gowalla-merged'
+
+#n_layers: 3
+
+TopK: 5
+user_threshold: 0.8
+item_threshold: 0.8
+
+ssl_temp: 0.1
+ssl_reg: 1e-6
+info_reg: 1e-7
+alpha: 1
+gamma: 1.05
+
+

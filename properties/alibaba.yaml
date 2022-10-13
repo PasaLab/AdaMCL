@@ -1,0 +1,23 @@
+load_col:
+  inter: [user_id, item_id]
+
+user_inter_num_interval: "[0,inf)"
+item_inter_num_interval: "[0,inf)"
+
+gpu_id: 0
+dataset: 'alibaba'
+
+
+TopK: 5
+user_threshold: 1
+item_threshold: 0.8
+
+ssl_temp: 0.2
+ssl_reg: 1e-6
+info_reg: 1e-6
+alpha: 1
+gamma: 0.1
+
+
+
+

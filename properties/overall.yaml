@@ -1,0 +1,22 @@
+eval_setting:
+  split:
+    RS: [0.8, 0.1, 0.1]
+  order: RO
+  group_by: user
+  mode: full
+
+train_batch_size: 2048
+eval_batch_size: 4096000
+valid_metric: Recall@20
+metrics: ["Recall", "NDCG"]
+topk: [10, 20, 50]
+
+embedding_size: 64
+n_layers: 3
+reg_weight: 1e-4
+learning_rate: 1e-3
+hyper_layer: 2
+alpha: 1
+gamma: 1
+save_dataset: True
+show_progress: False
