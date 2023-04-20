@@ -7,7 +7,7 @@ This is the official PyTorch implementation of AdaMCL:
 We propose a novel adaptive multi-view fusion contrastive learning framework, named (**AdaMCL**), for graph collaborative filtering.
 
 <div  align="center"> 
-<img src="framework.jpg" style="width: 75%"/>
+<img src="./framework.jpg" style="width: 75%"/>
 </div>
 
 ## Requirements
